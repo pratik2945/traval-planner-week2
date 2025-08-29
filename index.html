@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner - Route Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-route"></i> Travel Planner</h1>
+            <p>Plan your journey with intelligent route calculation</p>
+        </header>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="destination-inputs">
+                    <h3><i class="fas fa-map-marker-alt"></i> Destinations</h3>
+                    
+                    <div class="input-group">
+                        <label for="start-point">Starting Point</label>
+                        <input type="text" id="start-point" placeholder="Enter starting location">
+                    </div>
+
+                    <div class="destinations-list" id="destinations-list">
+                        <div class="destination-item">
+                            <label>Destination 1</label>
+                            <input type="text" class="destination-input" placeholder="Enter destination">
+                            <button class="remove-dest" onclick="removeDestination(this)"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-secondary" onclick="addDestination()">
+                        <i class="fas fa-plus"></i> Add Destination
+                    </button>
+
+                    <div class="route-options">
+                        <h4><i class="fas fa-cog"></i> Route Options</h4>
+                        <div class="option-group">
+                            <label for="travel-mode">Travel Mode:</label>
+                            <select id="travel-mode">
+                                <option value="DRIVING">Driving</option>
+                                <option value="WALKING">Walking</option>
+                                <option value="BICYCLING">Bicycling</option>
+                                <option value="TRANSIT">Transit</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label for="route-optimization">Optimize for:</label>
+                            <select id="route-optimization">
+                                <option value="DISTANCE">Distance</option>
+                                <option value="TIME">Time</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="calculateRoute()">
+                        <i class="fas fa-route"></i> Calculate Route
+                    </button>
+                </div>
+
+                <div class="route-info" id="route-info" style="display: none;">
+                    <h3><i class="fas fa-info-circle"></i> Route Information</h3>
+                    <div class="route-summary">
+                        <div class="summary-item">
+                            <span class="label">Total Distance:</span>
+                            <span class="value" id="total-distance">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Total Duration:</span>
+                            <span class="value" id="total-duration">-</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="label">Waypoints:</span>
+                            <span class="value" id="waypoint-count">-</span>
+                        </div>
+                    </div>
+                    <div class="route-steps" id="route-steps"></div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <div id="map"></div>
+                <div class="map-controls">
+                    <button class="btn btn-small" onclick="clearRoute()">
+                        <i class="fas fa-trash"></i> Clear Route
+                    </button>
+                    <button class="btn btn-small" onclick="centerMap()">
+                        <i class="fas fa-crosshairs"></i> Center Map
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="loading-overlay" id="loading-overlay" style="display: none;">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Calculating route...</p>
+            </div>
+        </div>
+
+        <div class="error-message" id="error-message" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span id="error-text"></span>
+            <button onclick="hideError()"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry,places&callback=initMap">
+    </script>
+</body>
+</html>
