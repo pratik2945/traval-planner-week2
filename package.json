@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "travel-planner",
   "version": "1.0.0",
@@ -15,3 +16,22 @@
     "live-server": "^1.2.2"
   }
 }
+=======
+{
+  "name": "travel-planner",
+  "version": "1.0.0",
+  "description": "A travel planner application with Google Maps API integration for route calculation",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -p 8080 -o",
+    "dev": "live-server --port=8080"
+  },
+  "keywords": ["travel", "planner", "google-maps", "routes"],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
+  }
+}
+>>>>>>> 68f11ff263427724676ffc19f1138b72d40016c2
